@@ -1,0 +1,24 @@
+
+
+query SearchRepo($query:String!,$type:SearchType!){ 
+  search(first:20,query:$query,type:$type){
+    nodes{
+    ...on Repository {
+      name,
+      totalIssues:issues(states:OPEN){
+        totalCount
+      },
+      labels(first:10){
+        nodes{
+          color,
+          name,
+          issues(states:OPEN){
+            totalCount,
+            
+          }
+        }
+      }
+    }
+  }
+  }
+}
