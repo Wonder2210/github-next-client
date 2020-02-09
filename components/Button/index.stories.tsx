@@ -1,10 +1,11 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
 import ColorButton from "./Button";
-storiesOf("ColorButton", module)
-    .add("red",
-        () => <ColorButton color="red" />
-    )
-    .add("blue",
-        () => <ColorButton color="blue" />
-    )
+
+export default {
+    title:'Button',
+    component:ColorButton
+};
+
+export const re = ()=>(<ColorButton color="red" />);
+
+export const blue = () => (<ColorButton color="blue" />);

@@ -1,6 +1,10 @@
 import React from "react"
 
-export default (props) => {
+interface Props {
+    color : String
+}
+
+export default (props:Props) => {
     const {color} = props;
-    return <button style={{color}} >Color Button</button>
+    return <button >{color}</button>
 };
