@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-    stories: ['../components/**/*.stories.tsx'],
+    stories: ['../components/**/**/*.stories.tsx'],
      addons: ['@storybook/addon-actions/register','@storybook/addon-knobs/register',
      '@storybook/addon-viewport/register','@dump247/storybook-state/register'],
         webpackFinal: async config => {
