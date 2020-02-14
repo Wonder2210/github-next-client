@@ -12,12 +12,10 @@ export default {
 }
 
 export const Default = withState({value:''})(({store})=>{
-    return(<ThemeProvider>
-        <SearchBar 
+    return(<SearchBar 
         onChange={(e)=> store.set({value:e.currentTarget.value})}
         value={store.state.value}
 
         onClick={e=> store.set({value:""})}
-        />
-    </ThemeProvider>);
+        />);
     });

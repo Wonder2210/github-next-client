@@ -23,7 +23,7 @@
   ],
   "include": [
     "../next-env.d.ts",
-    "../**/*.ts",
-    "../**/*.tsx"
+    "../**/*.stories.ts",
+    "../**/*.stories.tsx"
   ]
 }

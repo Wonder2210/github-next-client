@@ -10,13 +10,11 @@ export default {
 };
 
 export const standard = withState({value:""})(({store})=>(
-<ThemeProvider>
-<SearchInput 
+    <SearchInput 
     onChange={(e)=> {
         store.set({value:e.currentTarget.value});
         
     }}
     value={store.state.value}
     placeholder="here"  />
-</ThemeProvider>
     ));

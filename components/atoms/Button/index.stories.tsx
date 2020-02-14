@@ -13,6 +13,4 @@ export const re = ()=>(<ColorButton color="red" />);
 
 export const blue = () => (<ColorButton color="blue" />);
 
-export const search = () => (<ThemeProvider>
-    <SearchButton onClick={  action('button click')}/>
-</ThemeProvider>);
+export const search = () => (<SearchButton onClick={  action('button click')}/>);
