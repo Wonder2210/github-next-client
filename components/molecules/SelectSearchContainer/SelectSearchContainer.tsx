@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Stack } from '@chakra-ui/core';
+import {Stack,Box } from '@chakra-ui/core';
 import { SearchSelect} from '../../atoms/SearchSelect';
 
 type sscontainer = {
@@ -15,17 +15,33 @@ const options = [
         content:"base2",
         value:"base2"
     }
-]
+];
+
+type Cbox = {
+    children : React.ReactNode;
+}
+
+const CustomBox = ({children}: Cbox  )=>(
+<Box p={2}>
+    {children}
+</Box>);
 
 const SelectSearchContainer = ({onSelect}:sscontainer) => {
     return (
-       <Stack isInline spacing={8} align="center">
-        <SearchSelect options={options} onSelect={onSelect} name="issues" placeholder="issues"/>
+       <Stack isInline spacing={8} display="flex" alignItems="center" justifyContent="center" align="center">
+        <CustomBox>
+        <SearchSelect  options={options} onSelect={onSelect} name="issues" placeholder="issues"/>
 
+        </CustomBox>
+        <CustomBox>
         <SearchSelect options={options} onSelect={onSelect} name="second" placeholder="issues"/>
 
-        <SearchSelect options={options} onSelect={onSelect} name="third" placeholder="issues"/>
-       </Stack>
+        </CustomBox>
+        <CustomBox>
+        <SearchSelect  options={options} onSelect={onSelect} name="third" placeholder="issues"/>
+
+        </CustomBox>
+      </Stack>
     )
 }
 
