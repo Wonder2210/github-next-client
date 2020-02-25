@@ -1,8 +1,14 @@
-import * as React from 'react'
+import * as React from 'react';
+import { Avatar as Image } from '@chakra-ui/core';
 
-const Avatar = () => {
+type props ={
+    name:string;
+    src:string;
+}
+
+const Avatar = ({src,name}:props) => {
     return (
-        <Avatar name={name} src={} />
+        <Image name={name} src={src} />
     )
 }
 
