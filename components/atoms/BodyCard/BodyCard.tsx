@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text,Stack,Link } from '@chakra-ui/core';
+import { Text,Box,Link,Heading } from '@chakra-ui/core';
 
 type props ={
     header:string;
@@ -9,17 +9,17 @@ type props ={
 
 const BodyCard = ({header,body}:props) => {
     return (
-      <Stack isInline align="left" spacing={1} >
-          <Text >
-             <Link color="black" size={'xl'} isExternal>
+      <Box  shadow="md" borderWidth="1px">
+          <Heading  fontSize="xl">
+          <Link textDecoration="none" color="black"  isExternal>
              {header}
              </Link>
-          </Text>
+          </Heading>
           <Text>
               {body}
           </Text>
-      </Stack>   
+      </Box>   
     )
-}
+};
 
 export default BodyCard;
