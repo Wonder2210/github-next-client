@@ -8,7 +8,7 @@ type props ={
 
 const Avatar = ({src,name}:props) => {
     return (
-        <Image name={name} src={src} size="lg" />
+        <Image name={name} src={src} size="xl" />
     )
 }
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Tag,TagLabel,Link} from '@chakra-ui/core';
+import namer from  'color-namer';
 
 type props ={
     color:string;
@@ -8,10 +9,10 @@ type props ={
 };
 
 const IssueLabel = ({color,name,url}:props) => {
+    const colorName = namer(color, { pick: ['basic'] });
     return (
-       <Tag variantColor={`#${color}`}
+       <Tag variantColor={colorName.basic[0].name}
        rounded="full"
-       variant="solid"
        >
            <TagLabel>
                <Link src={url} textDecoration="none">

@@ -9,7 +9,7 @@ type props ={
 
 const BodyCard = ({header,body}:props) => {
     return (
-      <Box  shadow="md" borderWidth="1px">
+      <Box borderWidth="1px">
           <Heading  fontSize="xl">
           <Link textDecoration="none" color="black"  isExternal>
              {header}

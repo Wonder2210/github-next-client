@@ -13,24 +13,26 @@ type issueLabel = {
 type props = {
     issues : Array<issueLabel>;
     name:string;
-    src:string;
+    image:string;
     header:string;
     body:string;
     
 }
 
-const Card = ({issues,src,header,body,name}:props)=>{
+const Card = ({issues,image,header,body,name}:props)=>{
     return(
-       <Box shadow={'lg'}>
-        <Stack isInline justifyContent="center" alignItems="center" spacing={8}>
-            <Box p={3} >
-            <Avatar name={name} src={src} />
+       <Box shadow={'lg'} padding={4}>
+        <Stack isInline justifyContent="start"  spacing={8}>
+            <Box  >
+            <Avatar name={name} src={image} />
             </Box>
-            <BodyCard header={header} body={body} />
+           <Box >
+           <BodyCard header={header} body={body} />
+           </Box>
         </Stack>
-        <Stack isInline>
+        <Stack spacing={1} isInline padding={1}>
             {issues.map((item,index)=>{
-                return( <IssueLabel {...item}/> )
+                return( <IssueLabel {...item} /> )
             })}
         </Stack>
        </Box>
