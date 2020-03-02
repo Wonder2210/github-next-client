@@ -2,7 +2,7 @@ import * as React from 'react';
 import BodyCard from './BodyCard';
 
 export default {
-    title:'Body card'
+    title:'github-next-client/Atoms/Body card'
 }
 
 export const Default = () => {

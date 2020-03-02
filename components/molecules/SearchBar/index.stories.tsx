@@ -7,7 +7,7 @@ import {ThemeProvider} from '@chakra-ui/core';
 import { withState } from '@dump247/storybook-state';
 
 export default {
-    title:'SearchBar',
+    title:'github-next-client/Molecules/SearchBar',
     component:SearchBar
 }
 

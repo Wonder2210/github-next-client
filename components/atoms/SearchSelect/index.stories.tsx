@@ -7,7 +7,7 @@ import { withState } from '@dump247/storybook-state';
 
 
 export default {
-    title:'Search select',
+    title:'github-next-client/Atoms/Search select',
 }
 
 const options = [

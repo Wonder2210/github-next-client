@@ -6,7 +6,7 @@ import { ThemeProvider} from '@chakra-ui/core';
 
 
 export default {
-    title:'Button'
+    title:'github-next-client/Atoms/Button'
 };
 
 export const re = ()=>(<ColorButton color="red" />);

@@ -6,7 +6,7 @@ import { withState } from '@dump247/storybook-state';
 const customState = { value:"", issues:"", second:"", third:""}
 
 export default {
-    title:"Search"
+    title:"github-next-client/Organisms/Search"
 }
 
 export const onSearch = withState(customState)(({store})=>{

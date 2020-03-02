@@ -5,7 +5,7 @@ import { ThemeProvider } from '@chakra-ui/core';
 import { withState } from '@dump247/storybook-state';
 
 export default {
-    title:'Search input',
+    title:'github-next-client/Atoms/Search input',
     component:SearchInput
 };
 

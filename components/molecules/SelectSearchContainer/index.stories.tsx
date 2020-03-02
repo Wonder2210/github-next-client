@@ -7,7 +7,7 @@ import { withState } from '@dump247/storybook-state';
 
 export default {
     
-    title:" Search select container"
+    title:" github-next-client/Molecules/Search select container"
 }
 
 export const custom = withState({value:"",name:""})(({store})=>{

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Avatar from './Avatar';
 
 export default {
-    title:'Repository Icon'
+    title:'github-next-client/Atoms/Repository Icon'
 }
 
 export const StandardIcon = () => {
