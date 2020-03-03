@@ -17,7 +17,7 @@ const CardFooter  = ({issues}:props) => {
     return (
         <Stack spacing={1} isInline padding={1}>
         {issues.map((item,index)=>{
-            return( <IssueLabel {...item} /> )
+            return( <IssueLabel key={index} {...item} /> )
         })}
     </Stack>
     )

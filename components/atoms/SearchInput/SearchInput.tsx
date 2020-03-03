@@ -13,7 +13,7 @@ const SearchInput = ({placeholder,onChange,value}:InputProps)=>{
             <Input placeholder={placeholder} 
             onChange={onChange} 
             value={value}
-            
+            name="input"
             />
            
     );

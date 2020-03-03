@@ -25,7 +25,7 @@ type props = {
 
 const Card = ({issues,image,header,body,name,StarsCount,IssuesCount}:props)=>{
     return(
-       <Box shadow={'lg'} padding={4}>
+       <Box shadow={'xl'} borderWidth="1px" padding={4}>
            <CardHeader IssuesCount={IssuesCount} StarsCount={StarsCount}/>
         <CardBody image={image} header={header} body={body} name={name}/>
         <CardFooter issues={issues}/>

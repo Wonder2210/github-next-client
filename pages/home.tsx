@@ -1,10 +1,9 @@
 import * as React from 'react';
+import MainContainer from '../components/mainContainer';
 const home = () => {
     return (
-        <div>
-            <h1>hello world</h1>
-        </div>
+       <MainContainer/>
     )
-}
+};
 
 export default home;
