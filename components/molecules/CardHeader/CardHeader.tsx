@@ -9,7 +9,7 @@ type props ={
 
 const CardHeader = ({StarsCount,IssuesCount}:props) => {
     return (
-        <Stack justifyContent='flex-end' isInline>
+        <Stack spacing={4} justifyContent='flex-end' isInline >
             <StarsLabel number={StarsCount}/>
             <BugsLabel number={IssuesCount}/>
         </Stack>

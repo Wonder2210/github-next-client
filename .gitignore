@@ -4,4 +4,4 @@ node_modules/
 
 /yarn-error.log
 
-/next'client.code-workspace
+/next'client.code-workspaceyarn run start

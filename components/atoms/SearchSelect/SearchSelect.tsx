@@ -6,7 +6,6 @@ type OptionsProps = {
     content:string;
 }
 
-
 type SelectP = {
     options:Array<OptionsProps>;
     placeholder:string;

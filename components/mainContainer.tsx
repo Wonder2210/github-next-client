@@ -53,8 +53,9 @@ class MainContainer extends Component<{},tstate> {
     }
 
     onSelect = (event:React.FormEvent<HTMLInputElement>)=>{
-         console.log(event.currentTarget.value);   
-        this.setState({input:event.currentTarget.value});
+         console.log(event.currentTarget.name);   
+         const nState = {[event.currentTarget.name]:event.currentTarget.value} as Pick<tstate, keyof tstate>
+        this.setState(nState);
     }
     onSubmit=()=>{
         console.log(this.state);
