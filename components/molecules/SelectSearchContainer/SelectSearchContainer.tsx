@@ -9,11 +9,11 @@ type sscontainer = {
 const labels:Array<{content:string; value:string;}>=[
     {
         content:"help wanted",
-        value:'help wanted:>2'
+        value:'help-wanted-issues:>1'
     },
     {
         content:"good first issue",
-        value:'good-first-issue:>2'
+        value:'good-first-issues:>1'
     },
   
 ];

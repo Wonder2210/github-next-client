@@ -1,8 +1,8 @@
 import * as React from 'react';
 import getConfig from 'next/config';
 import fetch from 'isomorphic-unfetch';
-import {WaveSpinner} from 'react-spinners-kit';
 import { NextPageContext } from 'next';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 import Router from 'next/router';
 
@@ -62,20 +62,7 @@ export default class Page extends React.Component<Props> {
 
     }
     else{
-      return (<React.Fragment>
-        <div><WaveSpinner size={100} color={"#00ff89"}/></div>
-      <style jsx>{`
-     
-      div {
-        width:100%;
-        height:100vh;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-      }
-     
-    `}</style>
-      </React.Fragment>);
+      return (<LoadingSpinner/>);
     }
     
   }

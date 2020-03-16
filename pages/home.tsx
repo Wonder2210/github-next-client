@@ -2,38 +2,42 @@ import * as React from 'react';
 import { Stack, Grid } from "@chakra-ui/core";
 import { Card } from '../components/organisms/Card';
 import { Search } from '../components/organisms/Search';
+import { Query, } from 'react-apollo';
+import { Search as SearchQuery } from '../queries';
+import LoadingSpinner from '../components/LoadingSpinner';
+
 
 const { Component } = React;
 
-const issues = [
-    {
-        "color": "fc2929",
-        "name": "bug",
-        "url": "https://github.com/airbnb/javascript/labels/bug"
-    },
-    {
-        "color": "cccccc",
-        "name": "duplicate",
-        "url": "https://github.com/airbnb/javascript/labels/duplicate"
-    },
-    {
-        "color": "84b6eb",
-        "name": "enhancement",
-        "url": "https://github.com/airbnb/javascript/labels/enhancement"
-    },
-    {
-        "color": "84b6eb",
-        "name": "enhancement",
-        "url": "https://github.com/airbnb/javascript/labels/enhancement"
-    },
-    {
-        "color": "84b6eb",
-        "name": "enhancement",
-        "url": "https://github.com/airbnb/javascript/labels/enhancement"
-    },
-]
 
-type tstate = { label: string; input: string; stars: string; language: string }
+type tstate = { label: string; input: string; stars: string; language: string };
+type SearchNodes = {
+    description: string;
+    url: string;
+    name: string;
+    openGraphImageUrl: string;
+    issues: { totalCount: number; };
+    stargazers: { totalCount: number; };
+    labels:
+    {
+        totalCount: number;
+        nodes: Array<{
+
+            color: string;
+            name: string;
+            url: string;
+        }>;
+    };
+
+
+}
+type SearchData = { nodes?: readonly [SearchNodes] };
+;
+type QueryVariables = {
+    query: string;
+    type: string;
+}
+
 
 class MainContainer extends Component<{}, tstate> {
     /**
@@ -41,7 +45,7 @@ class MainContainer extends Component<{}, tstate> {
      */
     constructor(props: Object) {
         super(props);
-        this.state = { label: "", input: "", stars: "", language: "" };
+        this.state = { label: "", input: "how to contribute", stars: "", language: "" };
     }
 
     onInput = (event: React.FormEvent<HTMLInputElement>) => {
@@ -69,31 +73,38 @@ class MainContainer extends Component<{}, tstate> {
                         value={this.state.input}
                     />
                 </Stack>
-                <Grid templateColumns=" repeat(auto-fill,minmax(470px,1fr))"  gap={4} justifyContent="center">
-                    <Card
-                        body="JavaScript Style Guide"
-                        name="Javascript"
-                        issues={issues}
-                        header="JavaScript"
-                        image={`https://repository-images.githubusercontent.com/126577260/3c924980-61ac-11e9-8e4e-6e50e0cec366`}
-                        IssuesCount={2345} StarsCount={2345}
-                    />
-                    <Card
-                        body="JavaScript Style Guide"
-                        name="Javascript"
-                        issues={issues}
-                        header="JavaScript"
-                        image={`https://repository-images.githubusercontent.com/126577260/3c924980-61ac-11e9-8e4e-6e50e0cec366`}
-                        IssuesCount={2345} StarsCount={2345}
-                    />
-                    <Card
-                        body="JavaScript Style Guide"
-                        name="Javascript"
-                        issues={issues}
-                        header="JavaScript"
-                        image={`https://repository-images.githubusercontent.com/126577260/3c924980-61ac-11e9-8e4e-6e50e0cec366`}
-                        IssuesCount={2345} StarsCount={2345}
-                    />
+                <Grid templateColumns=" repeat(auto-fill,minmax(470px,1fr))" gap={4} justifyContent="center">
+                    <Query<SearchData, QueryVariables> query={SearchQuery} variables={{ type: "REPOSITORY", query: `${this.state.stars} ${this.state.label}  language:${this.state.language} ${this.state.input}` }}>
+                        {({ loading, error, data }) => {
+                            if (loading) {
+                                return (<LoadingSpinner />);
+                            }
+                            if (error?.networkError) {
+                                console.log(error);
+                                return (<h1>Hay un error</h1>);
+                            }
+                            console.log(error?.graphQLErrors);
+                            console.log(data);
+                            const results = data?.nodes?.map((item, index) => {
+                                return (
+                                    <Card
+                                        key={index}
+                                        body={item.description}
+                                        name={item.name}
+                                        issues={item.labels.nodes}
+                                        header={item.url}
+                                        image={item.openGraphImageUrl}
+                                        IssuesCount={item.issues.totalCount} StarsCount={item.stargazers.totalCount}
+                                    />
+                                ) ;
+                            })
+                            return (<React.Fragment>{results}</React.Fragment>);
+
+                        }
+                        }
+                    </Query>
+
+
                 </Grid>
                 {/* Paginacion */}
 
@@ -103,3 +114,4 @@ class MainContainer extends Component<{}, tstate> {
 };
 
 export default MainContainer;
+
