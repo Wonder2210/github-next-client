@@ -40,10 +40,9 @@ export const LightCard = () => {
           <Card
             body="JavaScript Style Guide"
            name="Javascript"
-            issues={issues}
             header="JavaScript"
             image={`https://repository-images.githubusercontent.com/126577260/3c924980-61ac-11e9-8e4e-6e50e0cec366`}
-            IssuesCount={2345} StarsCount={2345}
+          
         />
        </Grid>
     )
