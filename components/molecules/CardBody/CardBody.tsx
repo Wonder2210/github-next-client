@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Avatar, Box,Stack } from '@chakra-ui/core';
-import { BodyCard } from '../../atoms/BodyCard';
+import { CardBodyContent } from '../../atoms/CardBodyContent';
 
 type props = {
 
@@ -18,7 +18,7 @@ const CardBody = ({name,body,image,header}:props) => {
             <Avatar name={name} src={image} />
             </Box>
         <Box >
-        <BodyCard header={header} body={body} />
+        <CardBodyContent header={header} body={body} name={name} />
         </Box>
     </Stack>
     )

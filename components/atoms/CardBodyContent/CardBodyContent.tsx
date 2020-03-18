@@ -4,17 +4,16 @@ import { Text,Box,Link,Heading } from '@chakra-ui/core';
 type props ={
     header:string;
     body:string;
+    name:string;
 };
 
 
-const BodyCard = ({header,body}:props) => {
+const BodyCard = ({header,body,name}:props) => {
     return (
       <Box >
-          <Heading  fontSize="xl">
-          <Link textDecoration="none" color="black"  isExternal>
-             {header}
+          <Link color="black" href={header} fontSize="xl" fontWeight={700}  isExternal>
+             {name}
              </Link>
-          </Heading>
           <Text>
               {body}
           </Text>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Router from 'next/router';
 import getConfig from 'next/config';
-import { Button } from '@chakra-ui/core';
+import { Button,Text,Stack } from '@chakra-ui/core';
 
 class GithubLoginButtonContainer extends React.Component {
   handleSignIn = () => {
@@ -12,14 +12,17 @@ class GithubLoginButtonContainer extends React.Component {
   };
 
   render() {
-    const { publicRuntimeConfig: { githubClientId } } = getConfig();
     return (
-       <React.Fragment>
-          este es el env{githubClientId}
-        <Button onClick={this.handleSignIn}>
-        Click here
-    </Button>
-       </React.Fragment>
+   
+        <Stack justifyContent="center" alignItems="center">
+      <Text fontSize="6xl">GnClient</Text>
+         <Text fontSize="1xl">Just a simple client for , easy search on github</Text>
+         <Button rightIcon="arrow-forward" onClick={this.handleSignIn} variantColor="teal" variant="outline">
+          Sign In
+         </Button>
+       
+        </Stack>
+   
     );
   }
 };

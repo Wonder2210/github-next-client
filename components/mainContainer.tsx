@@ -1,90 +1,76 @@
 import * as React from 'react';
-import { Stack,Grid } from "@chakra-ui/core";
-import {Card} from './organisms/Card';
-import {Search} from './organisms/Search';
-import { type } from 'os';
+import { Stack, Grid,Button } from "@chakra-ui/core";
+import { Card } from '../components/organisms/Card';
+import { Search } from '../components/organisms/Search';
+import LoadingSpinner from '../components/LoadingSpinner';
+
+import ReactPaginate from 'react-paginate';
+
 
 const { Component } = React;
+type SearchNodes = {
+    description: string;
+    url: string;
+    name: string;
+    openGraphImageUrl: string;
+}
+type SearchData = { 
+    repositoryCount?: number; 
+    nodes?: readonly [SearchNodes] 
+};
 
-const issues = [
-    {
-        "color": "fc2929",
-        "name": "bug",
-        "url": "https://github.com/airbnb/javascript/labels/bug"
-      },
-      {
-        "color": "cccccc",
-        "name": "duplicate",
-        "url": "https://github.com/airbnb/javascript/labels/duplicate"
-      },
-      {
-        "color": "84b6eb",
-        "name": "enhancement",
-        "url": "https://github.com/airbnb/javascript/labels/enhancement"
-      },
-      {
-        "color": "84b6eb",
-        "name": "enhancement",
-        "url": "https://github.com/airbnb/javascript/labels/enhancement"
-      },
-      {
-        "color": "84b6eb",
-        "name": "enhancement",
-        "url": "https://github.com/airbnb/javascript/labels/enhancement"
-      },
-]
+type props = {
+  data?:{search:SearchData};
+  onInput : (e: React.FormEvent<HTMLInputElement>)=>void;
+  onSelect : (e: React.FormEvent<HTMLInputElement>)=>void;
+  input:string;
+  loading:boolean;
+  loadMore:(number:number)=> void ;
+  repositoryCount?:number;
+  reposOnScreen : number ;
+}
 
-type tstate ={ issues:string; input:string; second:string; third:string}
-
-class MainContainer extends Component<{},tstate> {
-    /**
-     *
-     */
-    constructor(props:Object) {
-        super(props);
-        this.state={ issues:"", input:"", second:"", third:""};
-
-
+class MainContainer extends Component<props,{}> {
+    
+   loadMore = ()=>{
+       const {repositoryCount,reposOnScreen,loadMore} = this.props;
+       const number = reposOnScreen > reposOnScreen ? reposOnScreen : reposOnScreen + 10;
+        loadMore(number);
+   }
+    render() {
+      const results = this.props.data?.search.nodes?.map((item, index) => {
+         
+        return (
+            <Card
+                key={index}
+                body={item.description?.length > 300 ? (item.description.slice(0,300)).concat("...")  : item.description}
+                name={item.name}
+                header={item.url}
+                image={item.openGraphImageUrl}
+            />
+        );
+    })
+        return (
+            <Stack>
+                {/* Boton de log out */}
+                <Stack padding={2} justifyContent="center" alignItems="center" flexGrow={1}>
+                    <Search
+                        input={this.props.onInput}
+                        select={this.props.onSelect}
+                        submit={()=>{
+                          return ()=>{console.log("here")
+                        }}}
+                        value={this.props.input}
+                    />
+                </Stack>
+                <Grid templateColumns=" repeat(auto-fill,minmax(470px,1fr))" gap={4} justifyContent="center">
+               {this.props.loading?<LoadingSpinner/>:results}
+                </Grid>
+               <Button onClick={this.loadMore} isDisabled={this.props.reposOnScreen > this.props.reposOnScreen } alignSelf="center"> Load More</Button>
+            </Stack>
+        );
     }
-
-    onInput = (event:React.FormEvent<HTMLInputElement>)=>{
-        console.log(event.currentTarget.value);
-        this.setState({input:event.currentTarget.value});
-    }
-
-    onSelect = (event:React.FormEvent<HTMLInputElement>)=>{
-         console.log(event.currentTarget.name);   
-         const nState = {[event.currentTarget.name]:event.currentTarget.value} as Pick<tstate, keyof tstate>
-        this.setState(nState);
-    }
-    onSubmit=()=>{
-        console.log(this.state);
-    }
-  render() {
-    return (
-     <Stack>
-         <Stack>
-         <Search 
-         input={this.onInput}
-         select={this.onSelect}
-         submit={this.onSubmit}
-         value={this.state.input}
-        />
-         </Stack>
-         <Grid templateColumns="repeat(4, 1fr)" gap={6}>
-         <Card
-            body="JavaScript Style Guide"
-           name="Javascript"
-            issues={issues}
-            header="JavaScript"
-            image={`https://repository-images.githubusercontent.com/126577260/3c924980-61ac-11e9-8e4e-6e50e0cec366`}
-            IssuesCount={2345} StarsCount={2345}
-        />
-         </Grid>
-
-     </Stack>
-    );
-  }
 };
 
 export default MainContainer;
+

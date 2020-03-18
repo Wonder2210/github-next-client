@@ -2,9 +2,10 @@ import gql from 'graphql-tag';
 
 
 export const Search = gql`
-query Search($query:String!,$type:SearchType!){ 
-  search(type:$type,query:$query,first:10){
+query Search($query:String!,$first:Int!){ 
+  search(type:REPOSITORY,query:$query,first:$first){
     
+      repositoryCount
     nodes{
       ... on Repository{
         description,
@@ -13,20 +14,7 @@ query Search($query:String!,$type:SearchType!){
         ... on RepositoryInfo{
           openGraphImageUrl
         },
-        issues(states:OPEN){
-          totalCount
-        },
-        stargazers{
-          totalCount
-        },
-        labels(first:5){
-          totalCount,
-          nodes{  
-            color,
-            name,
-            url
-          }
-        }
+        
       }
     }
   }
