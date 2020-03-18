@@ -16,7 +16,7 @@ export default class Page extends React.Component<Props> {
     
     const {code} = query;
     
-    const { serverRuntimeConfig: { githubClientId, githubClientSecret } } = getConfig();
+    const { githubClientId, githubClientSecret } = process.env;
         
     const bodyData = JSON.stringify({
       client_id: githubClientId,
