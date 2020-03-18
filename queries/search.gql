@@ -74,11 +74,10 @@ query Search($query:String!,$type:SearchType!){
         },
         stargazers{
           totalCount
-        }
+        },
         labels(first:5){
           totalCount,
-          nodes{
-            
+          nodes{  
             color,
             name,
             url

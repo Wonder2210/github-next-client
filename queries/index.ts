@@ -4,14 +4,13 @@ import gql from 'graphql-tag';
 export const Search = gql`
 query Search($query:String!,$type:SearchType!){ 
   search(type:$type,query:$query,first:10){
-    nodes{ 
+    
+    nodes{
       ... on Repository{
         description,
         url,
         name,
-       
-      }
-      ... on RepositoryInfo{
+        ... on RepositoryInfo{
           openGraphImageUrl
         },
         issues(states:OPEN){
@@ -19,16 +18,17 @@ query Search($query:String!,$type:SearchType!){
         },
         stargazers{
           totalCount
-        }
+        },
         labels(first:5){
           totalCount,
-          nodes{
-            
+          nodes{  
             color,
             name,
             url
           }
         }
+      }
     }
   }
-}`;
+}
+`;
