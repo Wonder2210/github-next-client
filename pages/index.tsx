@@ -5,7 +5,7 @@ import { Button,Text,Stack } from '@chakra-ui/core';
 
 class GithubLoginButtonContainer extends React.Component {
   handleSignIn = () => {
-    const { publicRuntimeConfig: { githubClientId } } = getConfig();
+    const  { githubClientId } = process.env;
 
     window.location.href=`https://github.com/login/oauth/authorize?client_id=${githubClientId}`
    
