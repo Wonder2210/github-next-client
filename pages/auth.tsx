@@ -32,8 +32,9 @@ const Page = ({ errorMessage,accessToken }:Props) => {
 export const getServerSideProps: GetServerSideProps = async (context)=>{
    const {code} = context.query;
   
-  const {GITHUB_CLIENT_ID,GITHUB_CLIENT_SECRET } = process.env;
-  console.log(GITHUB_CLIENT_ID);
+   const GITHUB_CLIENT_SECRET  = process.env.GITHUB_CLIENT_SECRET;
+   const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
+  
       
   const bodyData = JSON.stringify({
     client_id: GITHUB_CLIENT_ID,
@@ -54,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = async (context)=>{
   const json = await res.json();
 
   const {access_token,error_description}= json;
-  console.log(json);
+
   return {
     props:{
       errorMessage:error_description?? null,
