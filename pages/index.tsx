@@ -14,7 +14,7 @@ class GithubLoginButtonContainer extends React.Component {
   render() {
     return (
    
-        <Stack justifyContent="center" alignItems="center">
+        <Stack justifyContent="center" alignItems="center" height={"100vh"}>
       <Text fontSize="6xl">GnClient</Text>
          <Text fontSize="1xl">Just a simple client for , easy search on github</Text>
          <Button rightIcon="arrow-forward" onClick={this.handleSignIn} variantColor="teal" variant="outline">

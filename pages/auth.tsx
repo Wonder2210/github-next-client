@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { GetServerSideProps } from 'next';
+import Error from 'next/error';
 import {useRouter} from 'next/router';
 import LoadingSpinner from '../components/LoadingSpinner';
 import fetch from 'isomorphic-unfetch';
@@ -22,7 +23,7 @@ const Page = ({ errorMessage,accessToken }:Props) => {
     });
     
     if (errorMessage){
-      return (<h2>Ha habido un error : {errorMessage}</h2>);
+      return (<Error statusCode={401} title={errorMessage}/>);
     }
     return (<LoadingSpinner/>);
  
